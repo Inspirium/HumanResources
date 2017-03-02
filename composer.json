@@ -7,7 +7,7 @@
         "HumanResources"
     ],
     "homepage": "https://github.com/Inspirium/HumanResources",
-    "license": "GPLv2",
+    "license": "GPLv3",
     "authors": [
         {
             "name": "Marko Banušić",
@@ -22,7 +22,7 @@
             "role": "Developer"
         },
         {
-            "name": "Siniša",
+            "name": "Siniša Kravaršćan",
             "email": "sinisa@inspirium.hr",
             "homepage": "https://inspirium.hr",
             "role": "Developer"
