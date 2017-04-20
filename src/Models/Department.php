@@ -10,6 +10,8 @@ class Department extends Model {
 
     protected $meta_model = 'Inspirium\HumanResources\Models\DepartmentsModelMeta';
 
+    protected $fillable = ['name'];
+
     public function employees() {
         return $this->hasMany('Inspirium\HumanResources\Models\Employee');
     }

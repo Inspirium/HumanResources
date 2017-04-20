@@ -11,7 +11,7 @@ Route::group(['namespace' => 'Inspirium\HumanResources\Controllers', 'middleware
         Route::post('edit/{id?}', 'EmployeeController@submitEmployee');
         Route::get('delete/{id}', 'EmployeeController@deleteEmployee');
     });
-    Route::group(['prefix' => 'departments'], function() {
+    Route::group(['prefix' => 'department'], function() {
         Route::get('/', 'DepartmentController@showDepartments');
         Route::get('edit/{id?}', 'DepartmentController@showDepartment');
         Route::post('edit/{id?}', 'DepartmentController@submitDepartment');
