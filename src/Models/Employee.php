@@ -11,7 +11,7 @@ class Employee extends Model {
 
     protected $meta_model = 'Inspirium\HumanResources\Models\EmployeeModelMeta';
 
-    protected $fillable = ['first_name', 'last_name', 'email'];
+    protected $fillable = ['first_name', 'last_name', 'email', 'department_id'];
 
     public function department() {
         return $this->belongsTo('Inspirium\HumanResources\Models\Department');
