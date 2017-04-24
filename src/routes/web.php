@@ -3,7 +3,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::group(['namespace' => 'Inspirium\HumanResources\Controllers', 'middleware' => 'web', 'prefix' => 'hr'], function() {
+Route::group(['namespace' => 'Inspirium\HumanResources\Controllers', 'middleware' => ['web', 'auth'], 'prefix' => 'hr'], function() {
     Route::group(['prefix' => 'employee'], function () {
         Route::get('/', 'EmployeeController@showEmployees');
         Route::get('show/{id}', 'EmployeeController@showEmployee');
