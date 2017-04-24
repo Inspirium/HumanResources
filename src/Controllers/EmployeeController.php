@@ -50,7 +50,7 @@ class EmployeeController extends Controller {
         $employee->save();
         $keys = [
             'sex', 'mobile_pre', 'mobile', 'mobile_vpn', 'phone_pre', 'phone', 'phone_vpn',
-            'address', 'city', 'postal_code'
+            'address', 'city', 'postal_code', 'room'
         ];
         foreach ($keys as $key) {
             $employee->updateMeta( $key, $request->input( $key ) );
