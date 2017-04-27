@@ -10,8 +10,25 @@ use Inspirium\HumanResources\Models\Employee;
 class EmployeeController extends Controller {
 
     public function showEmployees() {
-        $employees = Employee::all();
-        return view(config('app.template').'::hr.list', ['employees'=> $employees]);
+        $elements = Employee::all();
+        $columns = [
+            'name' => 'Name',
+            'department_name' => 'Department',
+            'phone' => 'Phone',
+            'mobile' => 'Mobile',
+            'room' => 'Room'
+        ];
+        $strings = [
+            'title' => 'Employees',
+            'add_new' => 'Add New Employee',
+        ];
+        $links = [
+            'add_new' => url('hr/employee/edit'),
+            'edit' => url('hr/employee/edit/'),
+            'delete' => url('hr/employee/delete/'),
+            'show' => url('hr/employee/show/')
+        ];
+        return view(config('app.template') . '::vue.table-search', compact( 'elements', 'columns', 'strings', 'links' ));
     }
 
     public function showEmployee($id) {
