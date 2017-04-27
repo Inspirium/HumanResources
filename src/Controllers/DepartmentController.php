@@ -9,8 +9,20 @@ use Inspirium\HumanResources\Models\Department;
 class DepartmentController extends Controller {
 
     public function showDepartments() {
-        $departments = Department::all();
-        return view(config('app.template').'::hr.departments.list', ['departments' => $departments]);
+        $elements = Department::all();
+        $columns = [
+            'name' => 'Name',
+        ];
+        $strings = [
+            'title' => 'Departments',
+            'add_new' => 'Add New Department',
+        ];
+        $links = [
+            'add_new' => url('hr/department/edit'),
+            'edit' => url('hr/department/edit/'),
+            'delete' => url('hr/department/delete/')
+        ];
+        return view(config('app.template') . '::vue.table-search', compact( 'elements', 'columns', 'strings', 'links' ));
     }
 
     public function showDepartment($id = null) {
