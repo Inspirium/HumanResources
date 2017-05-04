@@ -12,7 +12,7 @@ class Employee extends Model {
     protected $meta_model = 'Inspirium\HumanResources\Models\EmployeeModelMeta';
 
     protected $fillable = ['first_name', 'last_name', 'email', 'department_id'];
-    protected $appends = ['name', 'phone', 'mobile', 'room', 'department_name'];
+    protected $appends = ['name', 'phone', 'mobile', 'room', 'department_name', 'image'];
 
     public function department() {
         return $this->belongsTo('Inspirium\HumanResources\Models\Department');
@@ -36,5 +36,9 @@ class Employee extends Model {
 
     public function getRoomAttribute() {
         return $this->getMeta('room');
+    }
+
+    public function getImageAttribute() {
+        return '<img src="https://www.gravatar.com/avatar/' . md5( $this->email ) . '?s=50&d=wavatar" class="img-responsive">';
     }
 }

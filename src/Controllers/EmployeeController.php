@@ -12,11 +12,12 @@ class EmployeeController extends Controller {
     public function showEmployees() {
         $elements = Employee::all();
         $columns = [
-            'name' => 'Name',
-            'department_name' => 'Department',
-            'phone' => 'Phone',
-            'mobile' => 'Mobile',
-            'room' => 'Room'
+            'image' => [ 'title' => 'Image', 'breakpoint' => '', 'raw' => true ],
+            'name' => [ 'title' => 'Name', 'breakpoint' => ''],
+            'department_name' => [ 'title' => 'Department', 'breakpoint' => 'md'],
+            'phone' => [ 'title' => 'Phone', 'breakpoint' => 'md' ],
+            'mobile' => [ 'title' => 'Mobile', 'breakpoint' => 'md' ],
+            'room' => [ 'title' => 'Room', 'breakpoint' => 'md' ]
         ];
         $strings = [
             'title' => 'Employees',

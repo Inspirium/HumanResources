@@ -11,7 +11,7 @@ class DepartmentController extends Controller {
     public function showDepartments() {
         $elements = Department::all();
         $columns = [
-            'name' => 'Name',
+            'name' => [ 'title' => 'Name' ],
         ];
         $strings = [
             'title' => 'Departments',
