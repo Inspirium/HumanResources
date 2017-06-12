@@ -8,7 +8,7 @@ use Inspirium\HumanResources\Models\Department;
 class DepartmentController extends Controller {
 
 	public function searchDepartment($term) {
-		$departments = Department::where('name', 'LIKE', $term)->get();
+		$departments = Department::where('name', 'LIKE', '%'.$term.'%')->get();
 		return response()->json($departments);
 	}
 
