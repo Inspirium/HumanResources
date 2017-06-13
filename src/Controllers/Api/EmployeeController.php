@@ -8,7 +8,7 @@ use Inspirium\HumanResources\Models\Employee;
 class EmployeeController extends Controller {
 
 	public function searchEmployee($term) {
-		$employees = Employee::where('first_name', 'LIKE', '%'.$term.'%')->orWhere('last_name', 'LIKE', '%'.$term.'%')->orWhere('email', 'LIKE', '%'.$term.'%')->get();
+		$employees = Employee::where('first_name', 'LIKE', '%'.$term.'%')->orWhere('last_name', 'LIKE', '%'.$term.'%')->get();
 		return response()->json($employees);
 	}
 

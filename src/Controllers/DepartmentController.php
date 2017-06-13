@@ -18,9 +18,9 @@ class DepartmentController extends Controller {
             'add_new' => 'Add New Department',
         ];
         $links = [
-            'add_new' => url('hr/department/edit'),
-            'edit' => url('hr/department/edit/'),
-            'delete' => url('hr/department/delete/')
+            'add_new' => url('human_resources/department/edit'),
+            'edit' => url('human_resources/department/edit/'),
+            'delete' => url('human_resources/department/delete/')
         ];
         return view(config('app.template') . '::vue.table-search', compact( 'elements', 'columns', 'strings', 'links' ));
     }
