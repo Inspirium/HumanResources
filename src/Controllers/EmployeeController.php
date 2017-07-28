@@ -73,6 +73,6 @@ class EmployeeController extends Controller {
         foreach ($keys as $key) {
             $employee->updateMeta( $key, $request->input( $key ) );
         }
-        return redirect('hr/employee/show/'.$employee->id);
+        return redirect('human_resources/employee/show/'.$employee->id);
     }
 }
