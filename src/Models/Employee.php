@@ -53,9 +53,9 @@ class Employee extends Model {
 	    if ($this->email) {
 		    return 'https://www.gravatar.com/avatar/' . md5( $this->email ) . '?s=50&d=wavatar"';
 	    }
-    	if ($this->user_id) {
+    	/*if ($this->user_id) {
 		    return 'https://www.gravatar.com/avatar/' . md5( $this->user()->email ) . '?s=50&d=wavatar"';
-	    }
+	    }*/
 	    return 'https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg';
     }
 }
