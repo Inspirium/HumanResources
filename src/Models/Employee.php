@@ -23,7 +23,7 @@ class Employee extends Model {
     }
 
     public function tasks() {
-    	return $this->belongsToMany('Inspirium\TaskManagement\Models\Task', 'employee_task_pivot', 'employee_id', 'task_id')->with('assigner');
+    	return $this->belongsToMany('Inspirium\TaskManagement\Models\Task', 'employee_task_pivot', 'employee_id', 'task_id')->with('assigner')->withPivot('order')->orderBy('pivot_order');
     }
 
     public function getDepartmentNameAttribute() {
