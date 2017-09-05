@@ -39,7 +39,6 @@ class EmployeeController extends Controller {
 
     public function showEditEmployee($id = null) {
         $employee = Employee::firstOrNew(['id' => $id]);
-        $employee->getAllMeta();
         $departments = Department::all();
         $phones = ['099', '098', '097', '095', '092', '091', '01',
             '020', '021', '022', '023',
@@ -63,16 +62,20 @@ class EmployeeController extends Controller {
                 'first_name' => $request->input('first_name'),
                 'last_name' => $request->input('last_name'),
                 'email' => $request->input('email'),
-                'department_id' => $request->input('department_id')
+                'department_id' => $request->input('department_id'),
+	            'sex' => $request->input('sex'),
+	            'mobile_pre' => $request->input('mobile_pre'),
+	            'mobile' => $request->input('mobile'),
+	            'mobile_vpn' => $request->input('mobile_vpn'),
+	            'phone_pre' => $request->input('phone_pre'),
+	            'phone' => $request->input('phone'),
+	            'phone_vpn' => $request->input('phone_vpn'),
+	            'address' => $request->input('address'),
+	            'city' => $request->input('city'),
+	            'postal_code' => $request->input('postal_code'),
+	            'room' => $request->input('room')
             ]);
         $employee->save();
-        $keys = [
-            'sex', 'mobile_pre', 'mobile', 'mobile_vpn', 'phone_pre', 'phone', 'phone_vpn',
-            'address', 'city', 'postal_code', 'room'
-        ];
-        foreach ($keys as $key) {
-            $employee->updateMeta( $key, $request->input( $key ) );
-        }
         return redirect('human_resources/employee/show/'.$employee->id);
     }
 }

@@ -21,6 +21,17 @@ class CreateEmployeesTable extends Migration
             $table->integer('user_id')->nullable();
             $table->integer('department_id')->nullable();
             $table->string('image')->nullable();
+            $table->string('mobile_pre')->nullable();
+            $table->string('mobile')->nullable();
+            $table->string('mobile_vpn')->nullable();
+            $table->string('phone_pre')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('phone_vpn')->nullable();
+            $table->string('address')->nullable();
+            $table->string('city')->nullable();
+            $table->string('postal_code')->nullable();
+            $table->string('room')->nullable();
+            $table->string('sex')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
