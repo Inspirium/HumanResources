@@ -55,10 +55,12 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\Inspirium\HumanResources\Models\Employee whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Inspirium\HumanResources\Models\Employee whereUserId($value)
  * @mixin \Eloquent
+ * @property-read mixed $link
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Inspirium\Messaging\Models\Thread[] $threads
  */
 class Employee extends Model {
 
-    protected $fillable = ['first_name', 'last_name', 'email', 'department_id'];
+    protected $fillable = ['first_name', 'last_name', 'email', 'department_id', 'link'];
     protected $appends = ['name', 'department_name'];
 
     public function user() {
@@ -93,4 +95,12 @@ class Employee extends Model {
 	    }*/
 	    return 'https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg';
     }
+
+    public function getLinkAttribute() {
+    	return '/human_resources/employee/show/'.$this->id;
+    }
+
+	public function threads() {
+		return $this->belongsToMany('Inspirium\Messaging\Models\Thread', 'threads_employees');
+	}
 }
