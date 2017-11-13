@@ -86,7 +86,10 @@ class Employee extends Model {
 		    return Storage::disk('public')->url($value);
 	    }
 	    if ($this->email) {
-		    return 'https://www.gravatar.com/avatar/' . md5( $this->email ) . '?s=50&d=wavatar"';
+		    return 'https://www.gravatar.com/avatar/' . md5( $this->email ) . '?s=50&d=mm';
+	    }
+	    if ($this->user->email) {
+		    return 'https://www.gravatar.com/avatar/' . md5( $this->user->email ) . '?s=50&d=mm';
 	    }
 	    return 'https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg';
     }
