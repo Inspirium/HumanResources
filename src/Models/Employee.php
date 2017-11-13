@@ -3,6 +3,8 @@
 namespace Inspirium\HumanResources\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 /**
  * Inspirium\HumanResources\Models\Employee
@@ -60,7 +62,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Employee extends Model {
 
-    protected $fillable = ['first_name', 'last_name', 'email', 'department_id', 'link'];
+    protected $guarded = ['created_at', 'update_at', 'deleted_at'];
     protected $appends = ['name', 'department_name'];
 
     public function user() {
@@ -69,10 +71,6 @@ class Employee extends Model {
 
     public function department() {
         return $this->belongsTo('Inspirium\HumanResources\Models\Department');
-    }
-
-    public function tasks() {
-    	return $this->belongsToMany('Inspirium\TaskManagement\Models\Task', 'employee_task_pivot', 'employee_id', 'task_id')->with('assigner')->withPivot('order')->orderBy('pivot_order');
     }
 
     public function getDepartmentNameAttribute() {
@@ -85,14 +83,11 @@ class Employee extends Model {
 
     public function getImageAttribute($value) {
     	if ($value) {
-    		return $value;
+		    return Storage::disk('public')->url($value);
 	    }
 	    if ($this->email) {
 		    return 'https://www.gravatar.com/avatar/' . md5( $this->email ) . '?s=50&d=wavatar"';
 	    }
-    	/*if ($this->user_id) {
-		    return 'https://www.gravatar.com/avatar/' . md5( $this->user()->email ) . '?s=50&d=wavatar"';
-	    }*/
 	    return 'https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg';
     }
 
@@ -101,6 +96,6 @@ class Employee extends Model {
     }
 
 	public function threads() {
-		return $this->belongsToMany('Inspirium\Messaging\Models\Thread', 'threads_employees');
+		return $this->belongsToMany('Inspirium\Messaging\Models\Thread', 'threads_employees', 'employee_id', 'thread_id');
 	}
 }
