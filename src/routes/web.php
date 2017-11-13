@@ -9,7 +9,7 @@ Route::group(['namespace' => 'Inspirium\HumanResources\Controllers', 'middleware
       //  Route::get('edit/{id?}', 'EmployeeController@showEditEmployee');
       //  Route::post('edit/{id?}', 'EmployeeController@submitEmployee');
       //  Route::get('delete/{id}', 'EmployeeController@deleteEmployee');
-      //  Route::get('show/{id}', 'EmployeeController@showEmployee');//TODO: remove show
+        Route::get('{id}/show', 'EmployeeController@showEmployee');//TODO: remove show
 	 /*   Route::any('{id}/{all}/{step}', function() {
 		    return view(config('app.template') . '::router-view');
 	    });*/

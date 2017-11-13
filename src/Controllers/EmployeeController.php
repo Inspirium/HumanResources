@@ -12,7 +12,7 @@ class EmployeeController extends Controller {
     public function showEmployees() {
         $elements = Employee::all();
         $columns = [
-            'image' => [ 'title' => 'Image', 'breakpoint' => '', 'raw' => true ],
+            'image' => [ 'title' => 'Image', 'breakpoint' => '', 'image' => true ],
             'name' => [ 'title' => 'Name', 'breakpoint' => ''],
             'department_name' => [ 'title' => 'Department', 'breakpoint' => 'md'],
             'phone' => [ 'title' => 'Phone', 'breakpoint' => 'md' ],
@@ -25,9 +25,9 @@ class EmployeeController extends Controller {
         ];
         $links = [
             'add_new' => url('human_resources/employee/edit'),
-            'edit' => url('human_resources/employee/edit/'),
-            'delete' => url('human_resources/employee/delete/'),
-            'show' => url('human_resources/employee/show/')
+            'edit' => url('human_resources/employee/:id/edit/'),
+            'delete' => url('human_resources/employee/:id/delete/'),
+            'show' => url('human_resources/employee/:id/show/')
         ];
         return view(config('app.template') . '::vue.table-search', compact( 'elements', 'columns', 'strings', 'links' ));
     }
