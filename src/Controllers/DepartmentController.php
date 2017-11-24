@@ -2,7 +2,7 @@
 
 namespace Inspirium\HumanResources\Controllers;
 
-use App\Http\Controllers\Controller;
+use Inspirium\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inspirium\HumanResources\Models\Department;
 

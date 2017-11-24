@@ -2,7 +2,7 @@
 
 namespace Inspirium\HumanResources\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use Inspirium\Http\Controllers\Controller;
 use Inspirium\HumanResources\Models\Department;
 
 class DepartmentController extends Controller {

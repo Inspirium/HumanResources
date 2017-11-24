@@ -5,6 +5,10 @@ namespace Inspirium\HumanResources\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
+
 
 /**
  * Inspirium\HumanResources\Models\Employee
@@ -60,18 +64,30 @@ use Intervention\Image\Facades\Image;
  * @property-read mixed $link
  * @property-read \Illuminate\Database\Eloquent\Collection|\Inspirium\Messaging\Models\Thread[] $threads
  */
-class Employee extends Model {
+class Employee extends Authenticatable {
 
-    protected $guarded = ['created_at', 'update_at', 'deleted_at'];
-    protected $appends = ['name', 'department_name'];
+	use Notifiable, HasApiTokens;
 
-    public function user() {
-    	return $this->belongsTo('Inspirium\UserManagement\Models\User');
-    }
+    protected $guarded = [ 'created_at', 'update_at', 'deleted_at' ];
+    protected $appends = [ 'name', 'department_name' ];
+
+	protected $hidden = [ 'password', 'remember_token', ];
 
     public function department() {
         return $this->belongsTo('Inspirium\HumanResources\Models\Department');
     }
+
+	public function roles() {
+		return $this->belongsToMany('Inspirium\HumanResources\Models\Role', 'users_roles');
+	}
+
+	public function threads() {
+		return $this->belongsToMany('Inspirium\Messaging\Models\Thread', 'threads_employees', 'employee_id', 'thread_id');
+	}
+
+	public function hasRole($check) {
+		return in_array($check, array_pluck($this->roles->toArray(), 'name'));
+	}
 
     public function getDepartmentNameAttribute() {
         return $this->department->name;
@@ -98,7 +114,8 @@ class Employee extends Model {
     	return '/human_resources/employee/show/'.$this->id;
     }
 
-	public function threads() {
-		return $this->belongsToMany('Inspirium\Messaging\Models\Thread', 'threads_employees', 'employee_id', 'thread_id');
+	public function receivesBroadcastNotificationsOn()
+	{
+		return 'users.'.$this->id;
 	}
 }
